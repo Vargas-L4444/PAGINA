@@ -99,20 +99,20 @@ img { /*responsive*/
     margin-bottom: 45px;
 }
 
-.header-img {  /* Imagen "Learn English" */
-    width: 50%;
-}
-
-.header-img img{  /* Detalles Imagen "Learn English" */
-    width: 500px;
-    border-radius: 15px;
-}
-
 .btn-1 {
     display: inline-block;
     padding: 11px 25px;
     background-color: #02B1F4;
     color: #FFFFFF;
+    border-radius: 15px;
+}
+
+.header-img {  /* Imagen "Learn English" */
+    width: 50%;
+}
+
+.header-img img{  /* Configurar detalles img "Learn English" */
+    width: 500px;
     border-radius: 15px;
 }
 
