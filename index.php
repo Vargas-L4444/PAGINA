@@ -1,15 +1,20 @@
+<?php
+include("send.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medical Center</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="styleHtml.css">
-
+    <!-- Agrega esto antes de cerrar </body> -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-<body>
 
+<body>
     <header class="header">
         <div class="menu container">
             <a href="#" class="logo">RSVL</a>
@@ -79,17 +84,14 @@
                 <i class="fa-sharp fa-solid fa-hospital-user"></i>
                 <h3>pediatría</h3>
             </div>
-
             <div class="servicio-1">
                 <i class="fa-sharp fa-solid fa-stethoscope"></i>
                 <h3>ginecología</h3>
             </div>
-
             <div class="servicio-1">
                 <i class="fa-solid fa-bed-pulse"></i>
                 <h3>dermatología</h3>
             </div> 
-
             <div class="servicio-1">
                 <i class="fa-solid fa-hospital"></i>
                 <h3>cardiología</h3>
@@ -99,32 +101,50 @@
     
     <section class="formulario container">
         <form method="post" autocomplete="off">
-            
             <h2>Agenda Consulta</h2>
             <div class="input-group">
-
                 <div class="input-container">
-                    <input type="text" name="name" placeholder="Nombre y Apellido">
+                    <input type="text" name="name" placeholder="Nombre y Apellido" required>
                     <i class="fa-solid fa-user"></i>
                 </div>
-
                 <div class="input-container">
-                    <input type="tel" name="phone" placeholder="Telefono Celular">
+                    <input type="tel" name="phone" placeholder="Telefono Celular" required>
                     <i class="fa-solid fa-phone"></i>
                 </div>
-
                 <div class="input-container">
-                    <input type="email" name="email" placeholder="Correo electronico">
+                    <input type="email" name="email" placeholder="Correo electronico" required>
                     <i class="fa-solid fa-envelope"></i>
                 </div>
-
                 <div class="input-container">
-                    <textarea name="message" placeholder="Detalles de la consulta"></textarea>
+                    <textarea name="message" placeholder="Detalles de la consulta" required></textarea>
                 </div>
-
-                <input type="submit" name="send" class="btn" onClick="myFunction()">
+                <input type="submit" name="send" class="btn" value="Enviar">
             </div>
         </form>
+        <?php if (isset($success)): ?>
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: '¡Registro exitoso!',
+                text: '<?php echo $success; ?>',
+                timer: 3000,
+                timerProgressBar: true,
+                confirmButtonColor: '#27ae60',
+                background: '#d4edda'
+            });
+        </script>
+        <?php endif; ?>
+
+        <?php if (isset($error)): ?>
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: '<?php echo $error; ?>',
+                confirmButtonColor: '#e74c3c'
+            });
+        </script>
+        <?php endif; ?>
     </section>
 
     <footer class="footer">
@@ -132,7 +152,6 @@
             <div class="link">
                 <a href="#" class="logo">rsvlotte.com</a>
             </div>
-
             <div class="link">
                 <ul>
                     <li><a href="#">Inicio</a></li>
@@ -143,17 +162,14 @@
             </div>
         </div>
     </footer>
-
-
-    <?php
-        include("send.php");
-    ?>
-
     <script>
-        function myFunction(){
-            window.location.href="http://localhost/pagina"
-        }
+        // Oculta el toast después de 3 segundos
+        setTimeout(function() {
+            var toast = document.getElementById('toast-success');
+            if (toast) toast.style.display = 'none';
+            var toastErr = document.getElementById('toast-error');
+            if (toastErr) toastErr.style.display = 'none';
+        }, 3000);
     </script>
-
 </body>
 </html>

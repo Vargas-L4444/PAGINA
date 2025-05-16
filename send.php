@@ -1,5 +1,4 @@
 <?php
-
 include("conexion.php");
 
 if(isset($_POST['send'])) {
@@ -17,8 +16,13 @@ if(isset($_POST['send'])) {
         VALUES ('$name', '$phone', '$email', '$message') ";
         $resultado = mysqli_query($conex, $consulta);
 
+        if ($resultado) {
+            $success = "¡Registro exitoso!";
+        } else {
+            $error = "Error al guardar en la base de datos.";
+        }
+    } else {
+        $error = "Por favor, complete todos los campos.";
     }
-    
 }
-
 ?>
